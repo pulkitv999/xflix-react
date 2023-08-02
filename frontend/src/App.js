@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from "./components/Main"
+import Videopage from './components/Videopage';
+import React from 'react';
+import { Route, Switch, BrowserRouter } from "react-router-dom"; // Change the import
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter> {/* Use BrowserRouter instead of Router */}
+      <React.StrictMode>
+        <div className="App">
+          <Switch>
+            <Route path="/video/:id" >
+              <Videopage />
+            </Route>
+            <Route exact path="/" >
+              <Main />
+            </Route>
+          </Switch>
+        </div>
+      </React.StrictMode>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
