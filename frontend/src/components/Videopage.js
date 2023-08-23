@@ -14,7 +14,6 @@ const endpoint =
 const Videopage = () => {
   const [videodata, setvideodata] = useState([]);
   const [currentdata, setcurrentdata] = useState({});
-  const [id, setid] = useState("");
   const [view, setviews] = useState(0);
   const params = useParams();
   console.log(params.id);
@@ -24,19 +23,12 @@ const Videopage = () => {
       console.log(res);
       setvideodata(res.data.videos);
       const data = res.data.videos.find((x) => x._id === params.id);
-      console.log(data);
-      if (id !== params.id) {
-        setid(params.id);
-      }
       setcurrentdata(data);
       setviews(view + 1);
     } catch (err) {
       console.log(err);
     }
   };
-  if (id !== params.id) {
-    setid(params.id);
-  }
 
   const increaseviews = async () => {
     try {
@@ -75,7 +67,7 @@ const Videopage = () => {
 
   useEffect(() => {
     fetchurl();
-  }, [id]);
+  }, [params.id]);
 
 
   useEffect(() => {
